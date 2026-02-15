@@ -4,30 +4,32 @@ const app = document.querySelector("#app");
 
 const state = {
   selectedAlphabetId: "latin-basic",
+  glyphIndex: 0,
   alphabets: [
     {
       id: "latin-basic",
       name: "Latin (Basic)",
       glyphs: ["A", "B", "C", "D", "E", "F"],
-      notes: "Starter set for western languages.",
+      notes: "A simple starter set.",
     },
     {
       id: "hiragana-starter",
       name: "Hiragana (Starter)",
       glyphs: ["あ", "い", "う", "え", "お", "か"],
-      notes: "A very small sample set for Japanese.",
+      notes: "A tiny set from Japanese.",
     },
     {
       id: "invented-demo",
       name: "Invented Script (Demo)",
       glyphs: ["◊", "△", "○", "□", "☆", "⨀"],
-      notes: "Placeholder symbols for a custom writing system.",
+      notes: "Fun symbols for pretend writing.",
     },
   ],
 };
 
 function selectAlphabet(alphabetId) {
   state.selectedAlphabetId = alphabetId;
+  state.glyphIndex = 0;
   render();
 }
 
@@ -35,145 +37,103 @@ function getSelectedAlphabet() {
   return state.alphabets.find((item) => item.id === state.selectedAlphabetId);
 }
 
+function moveAlphabet(direction) {
+  const currentIndex = state.alphabets.findIndex(
+    (item) => item.id === state.selectedAlphabetId,
+  );
+  if (currentIndex < 0) {
+    return;
+  }
+
+  const total = state.alphabets.length;
+  const nextIndex = (currentIndex + direction + total) % total;
+  selectAlphabet(state.alphabets[nextIndex].id);
+}
+
+function moveGlyph(direction) {
+  const selected = getSelectedAlphabet();
+  if (!selected || selected.glyphs.length === 0) {
+    return;
+  }
+
+  const total = selected.glyphs.length;
+  state.glyphIndex = (state.glyphIndex + direction + total) % total;
+  render();
+}
+
 function render() {
   const selected = getSelectedAlphabet();
+  const glyphCount = selected?.glyphs.length ?? 0;
+  const currentGlyph =
+    glyphCount > 0 ? selected?.glyphs[state.glyphIndex] ?? "?" : "?";
 
-  // TODO(app-shell): Replace string templates with reusable UI components.
-  // TODO(a11y): Add keyboard navigation, skip links, and focus management.
-  // TODO(i18n): Externalize all user-facing strings for localization.
   app.innerHTML = `
     <main class="layout">
       <header class="panel hero">
-        <h1>Marco Alphabet Lab</h1>
-        <p>
-          Stub app for exploring existing alphabets and sketching new ones.
-          Everything below is intentionally incomplete and marked with TODOs.
-        </p>
+        <h1>Marco Alphabet Playtime</h1>
+        <p>One small step at a time.</p>
       </header>
 
-      <section class="grid">
-        <article class="panel">
-          <h2>Alphabet Library</h2>
-          <p class="muted">Choose a seed alphabet to study.</p>
-          <ul class="alphabet-list">
-            ${state.alphabets
-              .map(
-                (alphabet) => `
-              <li>
-                <button
-                  class="alphabet-item ${
-                    alphabet.id === state.selectedAlphabetId ? "active" : ""
-                  }"
-                  data-alphabet-id="${alphabet.id}"
-                  type="button"
-                >
-                  <strong>${alphabet.name}</strong>
-                  <span>${alphabet.notes}</span>
-                </button>
-              </li>
-            `,
-              )
-              .join("")}
-          </ul>
-          <button class="secondary" type="button" disabled>
-            Create New Alphabet (TODO)
+      <section class="panel step">
+        <p class="step-badge">Step 1 of 2</p>
+        <h2>Pick a letter set</h2>
+        <div class="choice-row">
+          <button class="secondary big-button" data-action="prev-alphabet" type="button">
+            Back
           </button>
-          <p class="todo-note">
-            TODO(library): Load alphabets dynamically from backend and allow
-            filtering/sorting/searching.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h2>Selected Alphabet</h2>
-          <p class="muted">Current dataset: ${selected?.name ?? "None selected"}</p>
-          <div class="glyph-grid">
-            ${
-              selected?.glyphs
-                .map((glyph) => `<span class="glyph-cell">${glyph}</span>`)
-                .join("") ?? "<p>No glyphs loaded.</p>"
-            }
+          <div class="choice-card">
+            <strong>${selected?.name ?? "No set selected"}</strong>
+            <span>${selected?.notes ?? "Pick a set to start."}</span>
           </div>
-          <div class="actions">
-            <button type="button" disabled>Play Pronunciation (TODO)</button>
-            <button type="button" disabled>View Stroke Order (TODO)</button>
-          </div>
-          <p class="todo-note">
-            TODO(content): Attach pronunciation, transliteration, and stroke metadata
-            to each glyph.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h2>Alphabet Composer</h2>
-          <p class="muted">
-            Draft and iterate on your own writing system.
-          </p>
-          <form class="composer-form">
-            <label>
-              Alphabet name
-              <input type="text" placeholder="My New Script" disabled />
-            </label>
-            <label>
-              Glyph ideas
-              <textarea
-                rows="4"
-                placeholder="Paste symbols, sketches, and notes..."
-                disabled
-              ></textarea>
-            </label>
-            <button type="submit" disabled>Save Draft (TODO)</button>
-          </form>
-          <p class="todo-note">
-            TODO(composer): Persist drafts, validate symbols, and support version
-            history with undo/redo.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h2>Practice Mode</h2>
-          <p class="muted">Small drills to improve recall speed.</p>
-          <ul>
-            <li>Flashcards (TODO)</li>
-            <li>Glyph-to-sound quiz (TODO)</li>
-            <li>Sound-to-glyph quiz (TODO)</li>
-            <li>Timed challenge mode (TODO)</li>
-          </ul>
-          <button type="button" disabled>Start Practice Session (TODO)</button>
-          <p class="todo-note">
-            TODO(progress): Track per-user performance metrics and adaptive
-            difficulty.
-          </p>
-        </article>
+          <button class="secondary big-button" data-action="next-alphabet" type="button">
+            Next
+          </button>
+        </div>
       </section>
 
-      <footer class="panel">
-        <h2>Stub Status</h2>
-        <p>
-          TODO(api): Define API contracts for auth, alphabet catalog, and user data.
-        </p>
-        <p>
-          TODO(testing): Add unit tests, component tests, and end-to-end coverage.
-        </p>
-        <p>
-          TODO(obs): Add logging/telemetry and error reporting strategy.
-        </p>
-      </footer>
+      <section class="panel step">
+        <p class="step-badge">Step 2 of 2</p>
+        <h2>Learn one symbol</h2>
+        <div class="glyph-stage" aria-live="polite">
+          <span class="big-glyph">${currentGlyph}</span>
+        </div>
+        <p class="progress-text">${glyphCount > 0 ? state.glyphIndex + 1 : 0} of ${glyphCount} symbols</p>
+        <div class="choice-row">
+          <button class="big-button" data-action="prev-glyph" type="button">
+            Previous symbol
+          </button>
+          <button class="big-button" data-action="next-glyph" type="button">
+            Next symbol
+          </button>
+        </div>
+      </section>
     </main>
   `;
 
-  const alphabetButtons = app.querySelectorAll("[data-alphabet-id]");
-  alphabetButtons.forEach((button) => {
+  const actionButtons = app.querySelectorAll("[data-action]");
+  actionButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const target = event.currentTarget;
       if (!(target instanceof HTMLElement)) {
         return;
       }
-      const alphabetId = target.dataset.alphabetId;
-      if (!alphabetId) {
-        return;
+      const action = target.dataset.action;
+      switch (action) {
+        case "prev-alphabet":
+          moveAlphabet(-1);
+          break;
+        case "next-alphabet":
+          moveAlphabet(1);
+          break;
+        case "prev-glyph":
+          moveGlyph(-1);
+          break;
+        case "next-glyph":
+          moveGlyph(1);
+          break;
+        default:
+          break;
       }
-      selectAlphabet(alphabetId);
     });
   });
 }
