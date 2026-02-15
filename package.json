@@ -1,0 +1,26 @@
+{
+  "name": "marco-alphabet-app",
+  "version": "0.1.0",
+  "description": "An app for learning lots of the worlds alphabets, or inventing your own",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitchard/marco.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twitchard/marco/issues"
+  },
+  "homepage": "https://github.com/twitchard/marco#readme",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}

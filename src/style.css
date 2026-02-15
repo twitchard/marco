@@ -1,0 +1,164 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: #f3f5fb;
+  color: #172031;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.layout {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #dce3f0;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 4%);
+}
+
+.hero h1 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.hero p {
+  margin: 0;
+}
+
+.muted {
+  margin-top: 0;
+  color: #55617a;
+}
+
+.alphabet-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.alphabet-item {
+  width: 100%;
+  border: 1px solid #ccd7eb;
+  border-radius: 8px;
+  padding: 0.7rem;
+  text-align: left;
+  background: #f8faff;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.alphabet-item.active {
+  border-color: #3f71ea;
+  background: #e9f0ff;
+}
+
+.alphabet-item strong {
+  font-size: 0.95rem;
+}
+
+.alphabet-item span {
+  font-size: 0.85rem;
+  color: #56607a;
+}
+
+.glyph-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-bottom: 0.75rem;
+}
+
+.glyph-cell {
+  align-items: center;
+  background: #f5f8ff;
+  border: 1px solid #cdd7ea;
+  border-radius: 8px;
+  display: inline-flex;
+  font-size: 1.1rem;
+  justify-content: center;
+  min-height: 46px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid #2f62da;
+  background: #386bf3;
+  color: #fff;
+  padding: 0.55rem 0.85rem;
+}
+
+button.secondary {
+  border-color: #9ba9c8;
+  background: #f5f8ff;
+  color: #334162;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.composer-form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.composer-form label {
+  display: grid;
+  gap: 0.3rem;
+}
+
+input,
+textarea {
+  border: 1px solid #c9d3e9;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  background: #fafcff;
+}
+
+.todo-note {
+  background: #fff7d9;
+  border: 1px solid #f0dfa0;
+  border-radius: 8px;
+  color: #685212;
+  margin-bottom: 0;
+  padding: 0.5rem 0.65rem;
+}
