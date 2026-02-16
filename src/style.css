@@ -14,74 +14,223 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f5f8ff 0%, #eef4ff 100%);
+  background: linear-gradient(180deg, #f8faff 0%, #edf3ff 100%);
 }
 
 .layout {
   margin: 0 auto;
-  max-width: 760px;
-  padding: 1rem;
+  max-width: 860px;
+  padding: 1rem 1rem 1.2rem;
   display: grid;
-  gap: 0.85rem;
+  gap: 0.9rem;
 }
 
 .panel {
   background: #ffffff;
-  border: 1px solid #d6e0f5;
+  border: 1px solid #d7e2f8;
   border-radius: 18px;
   padding: 1rem;
   box-shadow: 0 8px 20px rgb(47 83 164 / 8%);
 }
 
-.hero h1 {
-  margin-top: 0;
-  margin-bottom: 0.2rem;
-  font-size: 1.8rem;
+.top-nav {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  backdrop-filter: blur(6px);
 }
 
-.hero p {
+.brand-group {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.brand-overline {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5572a8;
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.top-link {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid #d4e0f8;
+  color: #365488;
+  background: #f4f8ff;
+  font-weight: 700;
+  font-size: 0.93rem;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.top-link:hover {
+  background: #e9f1ff;
+  border-color: #c1d4fb;
+}
+
+.top-link.active {
+  background: #4f7cf7;
+  border-color: #4f7cf7;
+  color: #ffffff;
+}
+
+.hero {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5b709d;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.hero-copy {
   margin: 0;
   color: #4f5f7e;
 }
 
-.step h2 {
-  margin: 0.15rem 0 0.75rem;
-  font-size: 1.3rem;
+.hero-link {
+  width: fit-content;
+  color: #2e56ab;
+  text-decoration: none;
+  border-bottom: 1px dashed #2e56ab;
+  font-weight: 700;
 }
 
-.step-badge {
-  margin: 0;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #5f6f8f;
+.hero-link:hover {
+  color: #24458a;
+  border-color: #24458a;
 }
 
-.choice-row {
+.panel h3,
+.panel h4 {
+  margin: 0 0 0.7rem;
+}
+
+.chat-panel h3 {
+  margin-bottom: 0.6rem;
+}
+
+.chat-log {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.chat-bubble {
+  border-radius: 14px;
+  padding: 0.7rem 0.8rem;
+  max-width: 95%;
+}
+
+.chat-bubble.coach {
+  background: #f4f8ff;
+  border: 1px solid #d6e3ff;
+  color: #2b406c;
+  justify-self: start;
+}
+
+.chat-bubble.learner {
+  background: #e9f2ff;
+  border: 1px solid #c7dcff;
+  color: #223759;
+  justify-self: end;
+}
+
+.inline-glyph {
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+.selector-row {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 0.7rem;
-  align-items: stretch;
+  gap: 0.65rem;
+  align-items: end;
 }
 
-.choice-card {
-  border: 1px solid #cedbf8;
-  background: #f7faff;
-  border-radius: 14px;
-  padding: 0.8rem;
+.select-field {
   display: grid;
-  align-content: center;
-  text-align: center;
-  gap: 0.25rem;
+  gap: 0.32rem;
 }
 
-.choice-card strong {
-  font-size: 1.15rem;
+.select-field span {
+  font-size: 0.85rem;
+  color: #536a94;
 }
 
-.choice-card span {
-  color: #54688e;
-  font-size: 0.95rem;
+.select-field select {
+  width: 100%;
+  padding: 0.65rem 0.72rem;
+  border-radius: 12px;
+  border: 1px solid #c7d7f6;
+  background: #fbfdff;
+  color: #203250;
+  font-weight: 600;
+}
+
+.set-card {
+  margin-top: 0.8rem;
+  border: 1px solid #d0ddfa;
+  border-radius: 14px;
+  background: #f8fbff;
+  padding: 0.8rem;
+}
+
+.set-card h4 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.set-card p {
+  margin: 0.35rem 0 0;
+  color: #4f6388;
+}
+
+.set-chip {
+  display: inline-flex;
+  margin: 0 0 0.55rem;
+  padding: 0.22rem 0.52rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.chip-spotlight {
+  color: #20478f;
+  background: #e2edff;
+}
+
+.chip-review {
+  color: #6a5b22;
+  background: #fff4ce;
 }
 
 .glyph-stage {
@@ -94,19 +243,55 @@ body {
 }
 
 .big-glyph {
-  font-size: 5.2rem;
+  font-size: 5rem;
   line-height: 1;
 }
 
-.progress-text {
-  margin: 0.6rem 0 0.75rem;
+.glyph-title {
+  margin: 0.65rem 0 0.2rem;
   text-align: center;
-  color: #55668a;
-  font-size: 0.95rem;
+  font-size: 1.16rem;
+}
+
+.glyph-hint {
+  margin: 0;
+  text-align: center;
+  color: #4f6388;
+}
+
+.progress-meta {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: #44597f;
+}
+
+.progress-track {
+  margin-top: 0.3rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: #e3ecff;
+  overflow: hidden;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #5884fa, #7ca0ff);
+}
+
+.choice-row {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
 }
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -144,13 +329,152 @@ button.secondary:hover {
   min-width: 128px;
 }
 
+button.mini {
+  border-radius: 10px;
+  padding: 0.42rem 0.6rem;
+  min-width: 42px;
+}
+
+.invent-form {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.invent-form label {
+  display: grid;
+  gap: 0.28rem;
+  color: #3d5279;
+  font-size: 0.92rem;
+}
+
+.invent-form input {
+  border: 1px solid #ccd8f4;
+  border-radius: 12px;
+  padding: 0.65rem 0.72rem;
+  background: #fcfdff;
+}
+
+.invent-form input:focus,
+.select-field select:focus {
+  outline: 2px solid #9eb8f8;
+  outline-offset: 1px;
+}
+
+.quick-row {
+  border: 1px solid #d5e1fb;
+  border-radius: 12px;
+  background: #f6f9ff;
+  padding: 0.62rem;
+  display: grid;
+  gap: 0.42rem;
+}
+
+.quick-row span {
+  color: #536a95;
+  font-size: 0.84rem;
+}
+
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.save-note {
+  margin: 0.62rem 0 0;
+  color: #566b93;
+  font-size: 0.9rem;
+}
+
+.inventory-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.inventory-head h3 {
+  margin: 0;
+}
+
+.invent-list {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.58rem;
+}
+
+.invent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid #d0dcf8;
+  border-radius: 13px;
+  background: #f9fbff;
+  padding: 0.66rem 0.72rem;
+}
+
+.invent-main {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.invent-symbol {
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid #ccdaf9;
+  background: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.invent-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.12rem;
+}
+
+.invent-copy strong,
+.invent-copy span {
+  overflow-wrap: anywhere;
+}
+
+.invent-copy span {
+  color: #55698f;
+  font-size: 0.88rem;
+}
+
+.empty-state {
+  margin: 0.72rem 0 0;
+  border: 1px dashed #cdd9f4;
+  border-radius: 12px;
+  padding: 0.75rem;
+  color: #536788;
+  background: #f9fbff;
+}
+
 @media (max-width: 700px) {
   .layout {
     padding: 0.75rem;
   }
 
-  .hero h1 {
-    font-size: 1.5rem;
+  .top-nav {
+    position: static;
+  }
+
+  .hero-title {
+    font-size: 1.35rem;
+  }
+
+  .selector-row {
+    grid-template-columns: 1fr;
   }
 
   .choice-row {
@@ -168,11 +492,29 @@ button.secondary:hover {
   .big-glyph {
     font-size: 4.4rem;
   }
+
+  .inventory-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .invent-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .invent-item button {
+    width: 100%;
+  }
 }
 
 /* Keep a little extra visual spacing for very small screens. */
 @media (max-width: 380px) {
   .panel {
     padding: 0.85rem;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
   }
 }
